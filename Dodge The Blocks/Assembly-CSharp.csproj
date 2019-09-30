@@ -62,7 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DestroyOverTime.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <None Include="Assets\Fonts\Roboto\LICENSE.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/JOJU/UNITY_PROJECTS/2D/Dodge_The_Blocks_Game/Dodge The Blocks/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
