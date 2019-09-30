@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
 
     public int _waveThreshold = 10;           // When wave count is greater than this increase gravity of enemy
     public int _waveCounter;
-    [SerializeField] private Text _waveCounterText;
 
     private void OnEnable()
     {
@@ -32,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         _waveCounter++;
-        _waveCounterText.text = _waveCounter.ToString();
 
         float randSpace = Random.Range(0, _spawnPoints.Length);
         for (int i = 0; i < _spawnPoints.Length; i++)

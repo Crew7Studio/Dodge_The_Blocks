@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +11,30 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float _reloadDelay;
     [SerializeField] private float _timeSlowness;
+    [SerializeField] private Text _inGameWaveCoutner;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private Text _waveCounter;
+
+    private EnemySpawner _enemySpawner;
+
 
     private void OnEnable()
     {
         if(_instance == null) { _instance = this; }
+    }
+
+
+
+    private void Start()
+    {
+        _enemySpawner = EnemySpawner.Instance;
+    }
+
+
+
+    private void Update()
+    {
+        _inGameWaveCoutner.text = _enemySpawner._waveCounter.ToString();
     }
 
 
@@ -33,16 +53,25 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(_reloadDelay / _timeSlowness);
 
+        Destroy(FindObjectOfType<PlayerController>().gameObject);
         Time.timeScale = 1;
         Time.fixedDeltaTime *= _timeSlowness;
 
-        ResetLevel();
+        _gameOverScreen.SetActive(true);
+        StartCoroutine(ResetLevel());
     }
 
 
-    private void ResetLevel()
+    private IEnumerator ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int tempCounter = 0;
+
+        while (tempCounter < _enemySpawner._waveCounter)
+        {
+            _waveCounter.text = tempCounter.ToString();
+            tempCounter++;
+            yield return new WaitForSeconds(.05f);
+        }
 
     }
 }
