@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(_reloadDelay / _timeSlowness);
 
-        Destroy(FindObjectOfType<PlayerController>().gameObject);
         Time.timeScale = 1;
         Time.fixedDeltaTime *= _timeSlowness;
+        Destroy(FindObjectOfType<PlayerController>().gameObject, .5f);
 
         _gameOverScreen.SetActive(true);
         StartCoroutine(ResetLevel());
