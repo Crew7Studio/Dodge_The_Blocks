@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _reloadDelay;
     [SerializeField] private float _timeSlowness;
     [SerializeField] private Text _inGameWaveCoutner;
-    [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private Text _waveCounter;
+    [SerializeField] private GameObject _gameOverScreen;
+
+    public bool isGameOver;
 
     private EnemySpawner _enemySpawner;
 
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         if(_instance == null) { _instance = this; }
+        Time.timeScale = 1f;
+        isGameOver = false;
     }
 
 
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameOver = true;
         StartCoroutine(Ending());
     }
 

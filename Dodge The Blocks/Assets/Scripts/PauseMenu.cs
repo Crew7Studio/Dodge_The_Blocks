@@ -10,7 +10,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // if gameover screen is active no need to show pausemenu, since we slow time it lags.
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && !GameManager.Instance.isGameOver)
         {
             Toggle();
         }
